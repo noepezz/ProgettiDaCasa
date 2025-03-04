@@ -66,3 +66,28 @@ void stampaListaContrario(nodo *coda)
         coda = coda->prev;
     }
 }
+
+int list_len(nodo *lista){
+    int len = 0;
+
+    while (lista->next != NULL){
+        len++;
+        lista = lista->next;
+    }
+    return (len);
+}
+int *rimuoviNodo(nodo **lista, int valoreDaRimuovere)
+{
+    int *valore = malloc(sizeof(int));
+    nodo *current = *lista; 
+    nodo *temp = current;
+     while (current != NULL && current->value != valoreDaRimuovere) {
+        temp = current;
+        current = current->next;
+    }
+    *valore = current->value;
+    temp->next = current->next;
+    free(current);
+    
+    return valore;
+}

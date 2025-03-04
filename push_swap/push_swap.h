@@ -23,3 +23,4 @@ void stampaListaA(nodo *listaA);
 void stampaListaContrario(nodo *coda);
 void swap(nodo *listaA);
 void reverseRotate(nodo *lista);
+int *rimuoviNodo(nodo **lista, int valoreDaRimuovere);
