@@ -8,12 +8,12 @@ void rotate(nodo *lista)
         lista = lista->next;
     }
 }
-void ra(nodo *listaA)
+static void ra(nodo *listaA)
 {
     rotate(listaA);
     printf("ra");
 }
-void rb(nodo *listaB)
+static void rb(nodo *listaB)
 {
     rotate(listaB);
     printf("rb");

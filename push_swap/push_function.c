@@ -19,12 +19,12 @@ void push(nodo **a, nodo **b)
         free(oggetto);
     }
 }
-void pa(nodo **listaA, nodo **listaB)
+static void pa(nodo **listaA, nodo **listaB)
 {
     push(listaA, listaB);
     printf("pa");
 }
-void pb(nodo **listaB, nodo **listaA)
+static void pb(nodo **listaB, nodo **listaA)
 {
     push(listaB, listaA);
     printf("pb");

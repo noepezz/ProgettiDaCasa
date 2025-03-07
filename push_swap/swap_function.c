@@ -16,13 +16,13 @@ void swap(nodo *listaA)
     }
 }
 
-void sa(nodo *listaA)
+static void sa(nodo *listaA)
 {
     swap(listaA);
     printf("sa");
 }
 
-void sb(nodo *listaB)
+static void sb(nodo *listaB)
 {
     swap(listaB);
     printf("sb");

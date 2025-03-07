@@ -9,13 +9,13 @@ void reverseRotate(nodo *lista)
     }
 }
 
-void rra(nodo *listaA)
+static void rra(nodo *listaA)
 {
     reverseRotate(listaA);
     printf("rra");
 }
 
-void rrb(nodo *listaB)
+static void rrb(nodo *listaB)
 {
     reverseRotate(listaB);
     printf("rrb");
