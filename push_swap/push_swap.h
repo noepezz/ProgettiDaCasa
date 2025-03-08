@@ -8,6 +8,7 @@
 typedef struct nodo
 {
     int value;
+    int index;
     struct nodo *next;
     struct nodo *prev;
 } nodo;

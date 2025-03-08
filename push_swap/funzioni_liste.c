@@ -1,9 +1,21 @@
 #include "push_swap.h"
+int dimensioneLista(nodo *lista){
+    nodo *tmp;
+    int count;
+    count = 0;
+    tmp = lista;
 
+    while(tmp->next != NULL){
+        tmp = tmp->next;
+        count++;
+    }
+    return count;
+}
 nodo *crea_nodo(int value, nodo *prev, nodo *next)
 {
     nodo *temp = (nodo *)malloc(sizeof(nodo));
     temp->value = value;
+    temp->index = -1; //inizializzo a -1 cosi da poter indicizzare dopo
     temp->prev = prev;
     temp->next = next;
 

@@ -1,8 +1,52 @@
 #include "push_swap.h"
 
 //algoritmi di quick sort 
+static int getMaxBits(nodo *+lista{
+    nodo *testa;
+    int max;
+    int maxBits;
 
-nodo *small_num(int pivot, nodo **lista){
+    testa = *lista;
+    max = head->index;
+    maxBits = 0;
+    while (head){
+        if(head->index > max)
+            max = head->index;
+        head = head->next;
+    }
+    while((max >> maxBits) != 0)
+        maxBits++;
+    return maxBits;
+}
+void radix_sort(nodo **listaA, nodo **listaB){
+    nodo *testa;
+    int i;
+    int j;
+    int size;
+    int max_bits;
+
+    i = 0;
+    testa = *listaA;
+    size = dimensioniLista(testa);
+    max_bits = getMaxBits(listaA);
+    while (i < max_bits){
+        j = 0;
+        while (j++ <  size){
+            testa = *lista;
+            if (((testa->index >> i) & 1) == 1)
+                ra(listaA);
+            else
+                pb(listaA, listaB);
+        }
+        while (dimensioniLista(*listaB) != 0)
+            pa(listaA, listaB);
+        i++;
+    }
+}
+
+
+
+/*nodo *small_num(int pivot, nodo **lista){
     nodo *temp = *lista;
     nodo *small_list = NULL;
     while (temp->next != NULL){
@@ -53,7 +97,7 @@ void *quick_sort(nodo **lista){
 
 }
 
-/* void sort_small_stack(nodo **stack, int size)
+ void sort_small_stack(nodo **stack, int size)
 {
     if (size == 2 && (*stack)->value > (*stack)->next->value)
         sa(stack);

@@ -1,8 +1,11 @@
 #include "push_swap.h"
-
+// repohttps://github.com/42YerevanProjects/push_swap/blob/master/utils/check_args.c#L43
 int main(int ac, char **av)
 {
-    int array[5] = {1, 2, 3, 4, 5};
+
+
+}
+/*  int array[5] = {1, 2, 3, 4, 5};
     nodo *testa;
     nodo *coda;
     nodo *listaA;
@@ -26,5 +29,4 @@ int main(int ac, char **av)
     stampaListaB(listaB);
     stampaLista(listaA);
     // stampaListaContrario(coda);
-    return 0;
-}
+    return 0;*/
