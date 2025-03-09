@@ -1,3 +1,27 @@
+#include "push_swap.h"
+
+static int sonoUguali(long nb, char **arg, int i){
+    i++;
+    while (arg[i]) {
+        if (ft_atoi(arg[i]) == nb)
+            return 1;
+        i++;
+    }
+    return 0;
+}
+static int controlloNumero(char *num){
+    int i;
+    i = 0;
+    if (num[i] == '-')
+        i++;
+    while (num[i]){
+        if(!is_digit(num[i]))//in libft
+            return 1;
+        i++;
+    }
+    return 0;
+}
+
 void verificaArg(int ac, char **av){
     int i;
     long tmp;
@@ -14,7 +38,7 @@ void verificaArg(int ac, char **av){
         tmp = ft_atoi(arg[i]);//da impl
         if(!controlloNumero(arg[i]))//da fare
             ft_error("ERRORE"); //da fare
-        if(sonoUguali(tmp, arg, i)) //controlla se ci sono numeri uguali
+        if(sonoUguali(tmp, arg, i))
             ft_error("ERRORE");
         if (tmp < INT_MIN || tmp > INT_MAX) // includi limits.h
             ft_error("NUMERI FUORI DAL LIMITE");
@@ -47,5 +71,5 @@ static int  calcoloDist(nodo **lista, int i){ //calcolo della distanza tra indic
         distanza++;
         testa = testa->next;
     }
-    return testa;
+    return distanza;
 }

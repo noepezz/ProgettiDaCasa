@@ -10,7 +10,7 @@ void push(nodo **a, nodo **b)
     {
         if (*b == NULL)
         {
-            *b = crea_nodo(*oggetto, NULL, NULL);
+            *b = crea_nodo(*oggetto);
         }
         else
         {

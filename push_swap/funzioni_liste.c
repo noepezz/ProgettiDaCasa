@@ -46,14 +46,14 @@ void inserisciInTesta(nodo **testa, int elemento)
     nodo *nuovoNodo;
     if (*testa == NULL)
         *testa = nuovoNodo;
-    nuovoNodo = crea_nodo(elemento, NULL, *testa);
+    nuovoNodo = crea_nodo(elemento);
     (*testa)->prev = nuovoNodo;
     *testa = nuovoNodo;
 }
 void inserisciInCoda(nodo **coda, int elemento)
 {
     nodo *nuovoNodo;
-    nuovoNodo = crea_nodo(elemento, *coda, NULL);
+    nuovoNodo = crea_nodo(elemento);
     (*coda)->next = nuovoNodo;
     *coda = nuovoNodo;
 }
