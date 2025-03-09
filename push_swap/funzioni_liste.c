@@ -11,13 +11,16 @@ int dimensioneLista(nodo *lista){
     }
     return count;
 }
-nodo *crea_nodo(int value, nodo *prev, nodo *next)
+//nodo *crea_nodo(int value, nodo *prev, nodo *next)
+nodo *crea_nodo(int value)
 {
     nodo *temp = (nodo *)malloc(sizeof(nodo));
+    if (!temp)
+        return NULL;
     temp->value = value;
     temp->index = -1; //inizializzo a -1 cosi da poter indicizzare dopo
-    temp->prev = prev;
-    temp->next = next;
+    temp->prev = NULL;
+    temp->next = NULL;
 
     return temp;
 }

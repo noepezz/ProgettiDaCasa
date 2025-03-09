@@ -1,7 +1,7 @@
 #include "push_swap.h"
 
 //algoritmi di quick sort 
-static int getMaxBits(nodo *+lista{
+static int getMaxBits(nodo *lista){
     nodo *testa;
     int max;
     int maxBits;

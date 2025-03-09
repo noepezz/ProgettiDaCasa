@@ -2,7 +2,7 @@
 
 //inizializzo gli indici della lista con get min;
 
-nodo +getMin(nodo **lista){
+nodo *getMin(nodo **lista){
     nodo *testa = *lista;
     nodo *min = NULL; //VADO A CREARE UNA LISTA PARALLELA SOLO DI INDICI;
     int     nbMin = 0;

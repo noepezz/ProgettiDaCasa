@@ -27,3 +27,10 @@ static void sb(nodo *listaB)
     swap(listaB);
     printf("sb");
 }
+
+static void ss(nodo **listaA, nodo **listaB){
+    swap(listaA);
+    swap(listab);
+    printf("ss");
+
+}

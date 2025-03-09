@@ -23,3 +23,29 @@ void verificaArg(int ac, char **av){
     if (ac == 2)
         ft_free(arg);
 }
+
+int isSorted(nodo **lista_a){
+    //int valore = lista_a->value;
+    nodo *tmp = *lista_a;
+    while (tmp && tmp->next){
+        if (tmp->value > tmp->next->value)
+            return 0;
+        tmp = tmp->next;
+    }
+    return 1;
+}
+
+static int  calcoloDist(nodo **lista, int i){ //calcolo della distanza tra indice e testa
+    int distanza;
+    nodo *testa;
+
+    testa = *lista;
+    distanza = 0;
+    while (testa){
+        if(testa->index == i)
+            break ;
+        distanza++;
+        testa = testa->next;
+    }
+    return testa;
+}
