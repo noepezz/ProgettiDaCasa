@@ -5,26 +5,19 @@ void push(nodo **a, nodo **b)
     if (*a == NULL)
         return;
 
-    int *oggetto = rimuoviInTesta2(a);
+    int *oggetto = rimuoviInTesta(a);
     if (oggetto)
     {
-        if (*b == NULL)
-        {
-            *b = crea_nodo(*oggetto);
-        }
-        else
-        {
-            inserisciInTesta(b, *oggetto);
-        }
+        inserisciInTesta(b, *oggetto);
         free(oggetto);
     }
 }
-static void pa(nodo **listaA, nodo **listaB)
+void pa(nodo **listaA, nodo **listaB)
 {
     push(listaA, listaB);
     printf("pa");
 }
-static void pb(nodo **listaB, nodo **listaA)
+void pb(nodo **listaA, nodo **listaB)
 {
     push(listaB, listaA);
     printf("pb");

@@ -24,21 +24,21 @@ void swap(nodo **lista)
     }
 }
 
-static void sa(nodo *listaA)
+void sa(nodo *listaA)
 {
     swap(listaA);
     printf("sa");
 }
 
-static void sb(nodo *listaB)
+void sb(nodo *listaB)
 {
     swap(listaB);
     printf("sb");
 }
 
-static void ss(nodo *listaA, nodo *listaB){
+void ss(nodo *listaA, nodo *listaB)
+{
     sb(listaB);
     sa(listaA);
     printf("ss");
-
 }

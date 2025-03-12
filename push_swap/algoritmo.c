@@ -1,24 +1,27 @@
 #include "push_swap.h"
 
-//algoritmi di quick sort 
-static int getMaxBits(nodo *lista){
+// algoritmi di quick sort
+int getMaxBits(nodo **lista)
+{
     nodo *testa;
     int max;
     int maxBits;
 
     testa = *lista;
-    max = head->index;
+    max = testa->index;
     maxBits = 0;
-    while (head){
-        if(head->index > max)
-            max = head->index;
-        head = head->next;
+    while (testa)
+    {
+        if (testa->index > max)
+            max = testa->index;
+        testa = testa->next;
     }
-    while((max >> maxBits) != 0)
+    while ((max >> maxBits) != 0)
         maxBits++;
     return maxBits;
 }
-void radix_sort(nodo **listaA, nodo **listaB){
+void radix_sort(nodo **listaA, nodo **listaB)
+{
     nodo *testa;
     int i;
     int j;
@@ -27,24 +30,24 @@ void radix_sort(nodo **listaA, nodo **listaB){
 
     i = 0;
     testa = *listaA;
-    size = dimensioniLista(testa);
+    size = dimensioneLista(testa);
     max_bits = getMaxBits(listaA);
-    while (i < max_bits){
+    while (i < max_bits)
+    {
         j = 0;
-        while (j++ <  size){
-            testa = *lista;
+        while (j++ < size)
+        {
+            testa = *listaA;
             if (((testa->index >> i) & 1) == 1)
                 ra(listaA);
             else
                 pb(listaA, listaB);
         }
-        while (dimensioniLista(*listaB) != 0)
+        while (dimensioneLista(*listaB) != 0)
             pa(listaA, listaB);
         i++;
     }
 }
-
-
 
 /*nodo *small_num(int pivot, nodo **lista){
     nodo *temp = *lista;
@@ -90,7 +93,7 @@ void *quick_sort(nodo **lista){
     int pivot = tmp->value;
 
     while (tmp->next != NULL){
-    	rimuoviInTesta(&tmp);
+        rimuoviInTesta(&tmp);
         small_n = small_num(pivot, &tmp);
         big_n = big_num(pivot, &tmp);
     }

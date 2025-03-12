@@ -1,25 +1,25 @@
 #include "push_swap.h"
-int dimensioneLista(nodo *lista){
+int dimensioneLista(nodo *lista)
+{
     nodo *tmp;
     int count;
     count = 0;
     tmp = lista;
 
-    while(tmp->next != NULL){
+    while (tmp->next != NULL)
+    {
         tmp = tmp->next;
         count++;
     }
     return count;
 }
-//nodo *crea_nodo(int value, nodo *prev, nodo *next)
 nodo *crea_nodo(int value)
 {
     nodo *temp = (nodo *)malloc(sizeof(nodo));
     if (!temp)
         return NULL;
     temp->value = value;
-    temp->index = -1; //inizializzo a -1 cosi da poter indicizzare dopo
-    temp->prev = NULL;
+    temp->index = -1;
     temp->next = NULL;
 
     return temp;
@@ -43,20 +43,41 @@ int *rimuoviInTesta(nodo **lista)
 }
 void inserisciInTesta(nodo **testa, int elemento)
 {
-    nodo *nuovoNodo;
-    if (*testa == NULL)
-        *testa = nuovoNodo;
-    nuovoNodo = crea_nodo(elemento);
-    (*testa)->prev = nuovoNodo;
-    *testa = nuovoNodo;
+    nodo *nuovoNodo = crea_nodo(elemento);
+    nodo *tmp = *testa;
+    nuovoNodo->next = tmp;
+    testa = nuovoNodo;
 }
-void inserisciInCoda(nodo **coda, int elemento)
+// Funzione per inserire un elemento in coda alla lista
+void inserisciInCoda(nodo **testa, int elemento)
 {
-    nodo *nuovoNodo;
-    nuovoNodo = crea_nodo(elemento);
-    (*coda)->next = nuovoNodo;
-    *coda = nuovoNodo;
+    nodo *nuovoNodo = crea_nodo(elemento);
+    if (!nuovoNodo)
+    {
+        printf("Non ho creato il nuovo nodo\n");
+        return;
+    }
+
+    // Se la lista è vuota, il nuovo nodo diventa la testa
+    if (*testa == NULL)
+    {
+        printf("La testa è vuota inserisco il nuovo nodo come testa\n");
+        *testa = nuovoNodo;
+        return;
+    }
+
+    // Trova l'ultimo nodo
+    nodo *ultimo = *testa;
+    while (ultimo->next != NULL)
+    {
+        printf("sto scorrendo la lista  fino in fondo, valore: %d\n", ultimo->value);
+        ultimo = ultimo->next;
+    }
+
+    // Collega il nuovo nodo alla fine della lista
+    ultimo->next = nuovoNodo;
 }
+
 void stampaLista(nodo *listaA)
 {
     while (listaA != NULL)
@@ -78,14 +99,16 @@ void stampaListaContrario(nodo *coda)
     while (coda != NULL)
     {
         printf("listContrario: %d \n", coda->value);
-        coda = coda->prev;
+        // coda = coda->prev;
     }
 }
 
-int list_len(nodo *lista){
+int list_len(nodo *lista)
+{
     int len = 0;
 
-    while (lista->next != NULL){
+    while (lista->next != NULL)
+    {
         len++;
         lista = lista->next;
     }
@@ -94,15 +117,16 @@ int list_len(nodo *lista){
 int *rimuoviNodo(nodo **lista, int valoreDaRimuovere)
 {
     int *valore = malloc(sizeof(int));
-    nodo *current = *lista; 
+    nodo *current = *lista;
     nodo *temp = current;
-     while (current != NULL && current->value != valoreDaRimuovere) {
+    while (current != NULL && current->value != valoreDaRimuovere)
+    {
         temp = current;
         current = current->next;
     }
     *valore = current->value;
     temp->next = current->next;
     free(current);
-    
+
     return valore;
 }

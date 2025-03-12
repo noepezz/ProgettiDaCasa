@@ -1,97 +1,112 @@
-//funzioni per il sorting con meno di 5 elementi
-static int indiceMinore(nodo **lista, int valore){
-    nodo **testa;
-    int min;
+#include "push_swap.h"
+// funzioni per il sorting con meno di 5 elementi
+int get_min(nodo *lista, int valore)
+{
+    nodo *testa;
+    int min = -1;
 
-    testa = *lista;
-    min = testa->index;
-    while(teta->next){
-        testa = testa->next;
-        if ((testa->index < min) && testa->index != valore)
-            min = testa->index;
+    min = lista->index;
+    while (lista->next)
+    {
+        if ((lista->index < min) && lista->index != valore)
+            min = lista->index;
     }
     return (min);
 }
-static void sortTre(nodo **lista){
-    nodo **testa;
+
+void sortTre(nodo *lista)
+{
+    nodo *testa;
     int min;
     int next_min;
 
-    testa = *lista;
-    min = get_min(lista, -1);
+    testa = lista;
+    min = get_min(lista, 0);
     next_min = get_min(lista, min);
-    if isSorted(lista)
-        return ;
-    if (testa->index == min && testa->next->index != next_min){
+    if (isSorted(lista))
+        return;
+    if (testa->index == min && testa->next->index != next_min)
+    {
         ra(lista);
         sa(lista);
         rra(lista);
     }
-    else if (testa->index == next_min){
-        if(testa->next->index == min)
+    else if (testa->index == next_min)
+    {
+        if (testa->next->index == min)
             sa(lista);
         else
             rra(lista);
     }
-    else{
-        if(testa->next->index == min)
+    else
+    {
+        if (testa->next->index == min)
             ra(lista);
-        else{
+        else
+        {
             sa(lista);
             rra(lista);
         }
     }
 }
-static void sortQuattro(nodo **lista_a, nodo **lista_b){
+void sortQuattro(nodo *lista_a, nodo *lista_b)
+{
     int dist;
     if (isSorted(lista_a))
-        return ;
-    dist = calcoloDist(lista_a, get_min(lista_a, -1)); //trovo distanza tra il primo idx e il piu piccolo;
-    if (dist == 1) {
+        return;
+    dist = calcoloDist(lista_a, get_min(lista_a, -1)); // trovo distanza tra il primo idx e il piu piccolo;
+    if (dist == 1)
+    {
         ra(lista_a);
-    } //se la distanza è 1 allora fa un semplice ra
-    else if (dist == 2);
+    } // se la distanza è 1 allora fa un semplice ra
+    else if (dist == 2)
     {
         ra(lista_a);
         ra(lista_a);
     }
     else if (dist == 3)
+    {
         rra(lista_a);
+    }
     if (isSorted(lista_a))
-        return ;
+        return;
     pb(lista_a, lista_b);
     sortTre(lista_a);
     pa(lista_a, lista_b);
 }
-void    sortCinque(nodo **lista_a, nodo **lista_b){
+void sortCinque(nodo *lista_a, nodo *lista_b)
+{
     int dist;
     if (isSorted(lista_a))
-        return ;
-    dist = calcoloDist(lista_a, get_min(lista_a, -1)); //trovo distanza tra il primo idx e il piu piccolo;
-    if (dist == 1) {
+        return;
+    dist = calcoloDist(lista_a, get_min(lista_a, -1)); // trovo distanza tra il primo idx e il piu piccolo;
+    if (dist == 1)
+    {
         ra(lista_a);
-    } //se la distanza è 1 allora fa un semplice ra
-    else if (dist == 2);
+    } // se la distanza è 1 allora fa un semplice ra
+    else if (dist == 2)
     {
         ra(lista_a);
         ra(lista_a);
     }
-    else if (dist == 3) {
+    else if (dist == 3)
+    {
         rra(lista_a);
         rra(lista_a);
     }
     else if (dist == 4)
         rra(lista_a);
     if (isSorted(lista_a))
-        return ;
+        return;
     pb(lista_a, lista_b);
     sortQuattro(lista_a, lista_b);
     pa(lista_a, lista_b);
 }
-void    simpleSort(nodo **lista_a, nodo **lista_b) {
+void simpleSort(nodo *lista_a, nodo *lista_b)
+{
     int size;
 
-    if (isSorted(lista_a) || dimensioneLista(*lista_a) == 0 || dimensioneLista(*lista_a) == 1)
+    if (isSorted(lista_a) || dimensioneLista(lista_a) == 0 || dimensioneLista(lista_a) == 1)
         return;
     size = dimensioneLista(lista_a);
     if (size == 2)
