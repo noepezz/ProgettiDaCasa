@@ -1,17 +1,15 @@
 #include "../includes/push_swap.h"
-int dimensioneLista(nodo *lista)
+int dimensioneLista(nodo *lst)
 {
-    nodo *tmp;
-    int count;
-    count = 0;
-    tmp = lista;
+    int		count;
 
-    while (tmp->next != NULL)
-    {
-        tmp = tmp->next;
-        count++;
-    }
-    return count;
+	count = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		count++;
+	}
+	return (count);
 }
 nodo *crea_nodo(int value)
 {

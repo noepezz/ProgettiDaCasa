@@ -1,6 +1,6 @@
 #include "../includes/push_swap.h"
 
-// algoritmi di quick sort
+
 int getMaxBits(nodo **lista)
 {
     nodo	*head;
@@ -21,6 +21,78 @@ int getMaxBits(nodo **lista)
 	return (max_bits);
 }
 void radix_sort(nodo **listaA, nodo **listaB)
+{
+    int i = 0;
+    int size;
+    int max_bits;
+    int count_ones, count_zeros;
+
+    if (!listaA || !(*listaA)) {
+        printf("Errore: radix_sort() chiamato con listaA vuota\n");
+        return;
+    }
+
+    size = dimensioneLista(*listaA);
+    max_bits = getMaxBits(listaA);
+    printf("Radix Sort: size = %d, max_bits = %d\n", size, max_bits);
+
+    while (i < max_bits)
+    {
+        count_ones = 0;
+        count_zeros = 0;
+
+        // Conta quanti numeri hanno il bit i-esimo impostato a 1 o 0
+        nodo *temp = *listaA;
+        while (temp)
+        {
+            if (((temp->index >> i) & 1) == 1)
+                count_ones++;
+            else
+                count_zeros++;
+            temp = temp->next;
+        }
+
+        // Sposta gli elementi in base al bit corrente (0 -> listaB, 1 -> resta in listaA)
+        int moved = 0;
+        while (moved < size) 
+        {
+            if (!(*listaA)) {
+                printf("Errore: listaA è NULL prima di PB in radix_sort()\n");
+                return;
+            }
+
+            int bit = ((*listaA)->index >> i) & 1;
+
+            if (bit == 0) 
+            {
+                printf("PB: Sposto nodo %d in listaB\n", (*listaA)->index);
+                pb(listaA, listaB);
+            }
+            else 
+            {
+                printf("RA: Ruoto nodo %d\n", (*listaA)->index);
+                ra(listaA);
+            }
+            moved++;
+        }
+
+        // Riporta gli elementi da listaB a listaA (mantiene l'ordine crescente)
+        while (dimensioneLista(*listaB) > 0)
+        {
+            printf("PA: Sposto nodo %d da listaB a listaA\n", (*listaB)->index);
+            pa(listaA, listaB);
+        }
+
+        printf("Stato listaA dopo ciclo %d:\n", i);
+        stampaLista(*listaA);
+
+        i++;
+    }
+}
+
+
+
+/*void radix_sort(nodo **listaA, nodo **listaB)
 {
     nodo    *testa;
     int     i;
@@ -49,9 +121,81 @@ void radix_sort(nodo **listaA, nodo **listaB)
 }
 
 
+void radix_sort(nodo **listaA, nodo **listaB)
+{
+    int i = 0;
+    int size;
+    int max_bits;
+    int count_ones, count_zeros;
+
+    if (!listaA || !(*listaA)) {
+        printf("Errore: radix_sort() chiamato con listaA vuota\n");
+        return;
+    }
+
+    size = dimensioneLista(*listaA);
+    max_bits = getMaxBits(listaA);
+    printf("Radix Sort: size = %d, max_bits = %d\n", size, max_bits);
+
+    while (i < max_bits)
+    {
+        count_ones = 0;
+        count_zeros = 0;
+
+        // Conta quanti numeri hanno il bit i-esimo impostato a 1
+        nodo *temp = *listaA;
+        while (temp)
+        {
+            if (((temp->index >> i) & 1) == 1)
+                count_ones++;
+            else
+                count_zeros++;
+            temp = temp->next;
+        }
+
+        // Se ci sono più `1` che `0`, invertiamo la strategia
+        int threshold = (count_zeros < count_ones) ? 0 : 1;
+
+        // Sposta gli elementi in base al bit corrente
+        int moved = 0;
+        while (moved < size)  // Usa una variabile "moved" invece di un ciclo con dimensione fissa
+        {
+            if (!(*listaA)) {
+                printf("Errore: listaA è NULL prima di PB in radix_sort()\n");
+                return;
+            }
+
+            int bit = ((*listaA)->index >> i) & 1;
+
+            if (bit == threshold) 
+            {
+                printf("PB: Sposto nodo %d in listaB\n", (*listaA)->index);
+                pb(listaA, listaB);
+            }
+            else 
+            {
+                printf("RA: Ruoto nodo %d\n", (*listaA)->index);
+                ra(listaA);
+            }
+            moved++;
+        }
+
+        // Porta indietro i numeri da listaB a listaA
+        while (dimensioneLista(*listaB) > 0)
+        {
+            printf("PA: Sposto nodo %d da listaB a listaA\n", (*listaB)->index);
+            pa(listaA, listaB);
+        }
+
+        printf("Stato listaA dopo ciclo %d:\n", i);
+        stampaLista(*listaA);
+
+        i++;
+    }
+}
 
 
-/*void radix_sort(nodo **listaA, nodo **listaB)
+void radix_sort(nodo **listaA, nodo **listaB)
 {
     int i = 0, j;
     int size;
