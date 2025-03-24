@@ -1,43 +1,43 @@
 #include "../includes/push_swap.h"
 
-bool rotate(nodo **lista)
+bool rotate(t_nodo **lista)
 {
-    nodo *testa;
-    nodo *coda;
+    t_nodo *testa;
+    t_nodo *coda;
 
-    if (dimensioneLista(*lista) < 2)
-        return (-1);
+    if (dimensione_lista(*lista) < 2)
+        return (false);
     testa = *lista;
-    coda = ultimoNodo(testa);
+    coda = ultimo_t_nodo(testa);
     *lista = testa->next;
     testa->next = NULL;
     coda->next = testa;
     return (true);
 }
 
-bool ra(nodo **lista)
+bool ra(t_nodo **lista)
 {
     if (rotate(lista) == false)
         return (false);
-    printf("ra");
+    printf("ra\n");
     return (true);
 }
 
 
-bool rb(nodo **lista)
+bool rb(t_nodo **lista)
 {
     if (rotate(lista) == false)
         return (false);
-    printf("rb");
+    printf("rb\n");
     return (true);
 }
 
-bool rr(nodo **listaA, nodo **listaB)
+bool rr(t_nodo **listaA, t_nodo **listaB)
 {
-    if ((dimensioneLista(*listaA) < 2) || (dimensioneLista(*listaB) < 2))
+    if ((dimensione_lista(*listaA) < 2) || (dimensione_lista(*listaB) < 2))
         return (false);
     rotate (listaA);
     rotate (listaA);
-    printf("rr");
+    printf("rr\n");
     return (true);
 }

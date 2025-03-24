@@ -1,7 +1,7 @@
 #include "../includes/push_swap.h"
-int dimensioneLista(nodo *lst)
+int	dimensione_lista(t_nodo *lst)
 {
-    int		count;
+	int	count;
 
 	count = 0;
 	while (lst)
@@ -11,51 +11,48 @@ int dimensioneLista(nodo *lst)
 	}
 	return (count);
 }
-nodo *crea_nodo(int value)
+t_nodo	*crea_t_nodo(int value)
 {
-    nodo *temp = (nodo *)malloc(sizeof(nodo));
-    if (!temp)
-        return NULL;
-    temp->value = value;
-    temp->index = -1;
-    temp->next = NULL;
+    t_nodo	*temp;
 
-    return temp;
+	temp = (t_nodo *)malloc(sizeof(t_nodo));
+	if (!temp)
+		return NULL;
+	temp->value = value;
+	temp->index = -1;
+	temp->next = NULL;
+	return (temp);
 }
 
-int *rimuoviInTesta(nodo **lista)
+int	*rimuovi_in_testa(t_nodo **lista)
 {
-    int *valore = malloc(sizeof(int));
-    if (*lista != NULL)
-    {
-        *valore = (*lista)->value;
-        //nodo *temp = *lista;
-        *lista = (*lista)->next;
-        //free(temp);
-    }
-    else
-    {
-        printf("la lista è vuota, non posso prendere il primo elemento\n");
-    }
-    return valore;
+	int	*valore;
+
+	valore = malloc(sizeof(int));
+	if (*lista != NULL)
+	{
+		*valore = (*lista)->value;
+		*lista = (*lista)->next;
+	}
+	else
+	{
+		free_lista(lista);
+	}
+	return (valore);
 }
-void inserisciInTesta(nodo **testa, nodo *nuovo)//int elemento)
+void	inserisci_in_testa(t_nodo **testa, t_nodo *nuovo)
 {
-    nuovo->next = *testa;
-    *testa = nuovo;
-    //nodo *nuovoNodo = crea_nodo(elemento);
-    //nodo *tmp = *testa;
-    //nuovoNodo->next = tmp;
-    //testa = nuovoNodo;
+	nuovo->next = *testa;
+	*testa = nuovo;
 }
-// Funzione per inserire un elemento in coda alla lista
-void	ft_lstadd_back(nodo **stack, nodo *new)
+
+void	ft_lstadd_back(t_nodo **stack, t_nodo *new)
 {
-	nodo	*n;
+	t_nodo	*n;
 
 	if (*stack)
 	{
-		n = ultimoNodo(*stack);
+		n = ultimo_t_nodo(*stack);
 		n->next = new;
 		new->next = NULL;
 	}
@@ -65,36 +62,26 @@ void	ft_lstadd_back(nodo **stack, nodo *new)
 		(*stack)->next = NULL;
 	}
 }
-void inserisciInCoda(nodo **testa, int elemento)
+void	inserisci_in_coda(t_nodo **testa, int elemento)
 {
-    nodo *nuovoNodo = crea_nodo(elemento);
-    if (!nuovoNodo)
-    {
-        printf("Non ho creato il nuovo nodo\n");
-        return;
-    }
+    t_nodo	*nuovot_nodo;
+	t_nodo	*ultimo;
 
-    // Se la lista è vuota, il nuovo nodo diventa la testa
+	nuovot_nodo = crea_t_nodo(elemento);
+	ultimo = *testa;
+    if (!nuovot_nodo)
+        return;
     if (*testa == NULL)
     {
-        printf("La testa è vuota inserisco il nuovo nodo come testa\n");
-        *testa = nuovoNodo;
+        *testa = nuovot_nodo;
         return;
     }
-
-    // Trova l'ultimo nodo
-    nodo *ultimo = *testa;
     while (ultimo->next != NULL)
-    {
-        printf("sto scorrendo la lista  fino in fondo, valore: %d\n", ultimo->value);
         ultimo = ultimo->next;
-    }
-
-    // Collega il nuovo nodo alla fine della lista
-    ultimo->next = nuovoNodo;
+    ultimo->next = nuovot_nodo;
 }
 
-void stampaLista(nodo *listaA)
+void	stampaLista(t_nodo *listaA)
 {
     printf("\nLista con gli indici assegnati:\n");
     while (listaA)
@@ -104,49 +91,15 @@ void stampaLista(nodo *listaA)
     }
     printf("\n");
 }
-void stampaListaB(nodo *listaA)
-{
-    while (listaA != NULL)
-    {
-        printf("lista B: %d \n", listaA->value);
-        listaA = listaA->next;
-    }
+
+t_nodo	*ultimo_t_nodo(t_nodo *lista){
+	t_nodo	*coda;
+
+	coda = lista;
+	while (coda->next){
+		coda = coda->next;
+		if (coda->next == NULL)
+			return (coda);
+	}
+	return (coda);
 }
-nodo *ultimoNodo(nodo *lista){
-    nodo *coda;
-    coda = lista;
-    while (coda->next){
-        coda = coda->next;
-        if (coda->next == NULL)
-            return (coda);
-    }
-    return (coda);
-}
-
-/* int list_len(nodo *lista)
-{
-    int len = 0;
-
-    while (lista->next != NULL)
-    {
-        len++;
-        lista = lista->next;
-    }
-    return (len);
-} */
-/* int *rimuoviNodo(nodo **lista, int valoreDaRimuovere)
-{
-    int *valore = malloc(sizeof(int));
-    nodo *current = *lista;
-    nodo *temp = current;
-    while (current != NULL && current->value != valoreDaRimuovere)
-    {
-        temp = current;
-        current = current->next;
-    }
-    *valore = current->value;
-    temp->next = current->next;
-    free(current);
-
-    return valore;
-} */

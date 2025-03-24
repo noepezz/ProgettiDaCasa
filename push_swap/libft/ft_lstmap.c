@@ -57,9 +57,9 @@ void print_list(t_list *lst) {
 }
 
 int main() {
-    t_list *head = ft_lstnew(strdup("Nodo 1"));
-    t_list *node2 = ft_lstnew(strdup("Nodo 2"));
-    t_list *node3 = ft_lstnew(strdup("Nodo 3"));
+    t_list *head = ft_lstnew(strdup("t_nodo 1"));
+    t_list *node2 = ft_lstnew(strdup("t_nodo 2"));
+    t_list *node3 = ft_lstnew(strdup("t_nodo 3"));
     head->next = node2;
     node2->next = node3;
 

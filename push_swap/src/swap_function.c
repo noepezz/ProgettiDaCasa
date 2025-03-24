@@ -1,18 +1,19 @@
 #include "../includes/push_swap.h"
 
-bool swap(nodo **lista)
+bool swap(t_nodo **lista)
 {	
-    nodo	*testa;
-	nodo 	*next;
+    t_nodo	*testa;
+	t_nodo 	*next;
 	int		tmp_val;
 	int		tmp_index;
 
-	if (dimensioneLista(*lista) < 2)
+	if (dimensione_lista(*lista) < 2){
 		return (false);
+	}
 	testa = *lista;
 	next = testa->next;
 	if (!testa && !next)
-		ft_error("Errore di swap");
+		free_lista(lista);
 	tmp_val = testa->value;
 	tmp_index = testa->index;
 	testa->value = next->value;
@@ -21,51 +22,29 @@ bool swap(nodo **lista)
 	next->index = tmp_index;
 	return (true);
 }
-    /* int n;
-    int indice;
-    nodo *listaA;
-    listaA = *lista;
-    n = 0;
-    indice = 0;
-    if (dimensioneLista(listaA) < 2)
-        return false;
-    if (listaA == NULL || listaA->next == NULL)
-    {
-        printf("la lista è nulla o ha un elemento solo, non faccio nulla\n");
-    }
-    n = listaA->value;
-    indice = listaA->index;
-    listaA->value = listaA->next->value;
-    listaA->index = listaA->next->index;
-    listaA->next->index = indice;
-    listaA->next->value = n;
-    return true; */
-//}
 
-bool sa(nodo **listaA)
+bool sa(t_nodo **listaA)
 {
     if (swap(listaA) == false)
-        return false;
-    
-    printf("sa");
-    return true;
+        return (false);
+    printf("sa\n");
+    return (true);
 }
 
-bool sb(nodo **listaB)
+bool sb(t_nodo **listaB)
 {
     if (swap(listaB) == false)
-        return false;
-    
-    printf("sb");
-    return true;
+        return (false);
+    printf("sb\n");
+    return (true);
 }
 
-bool ss(nodo **listaA, nodo **listaB)
+bool ss(t_nodo **listaA, t_nodo **listaB)
 {
-    if ((dimensioneLista(*listaA) < 2) || (dimensioneLista(*listaA) < 2))
-        return false;
+    if ((dimensione_lista(*listaA) < 2) || (dimensione_lista(*listaA) < 2))
+        return (false);
     sb(listaB);
     sa(listaA);
-    printf("ss");
-    return true;
+    printf("ss\n");
+    return (true);
 }

@@ -1,114 +1,80 @@
 #include "../includes/push_swap.h"
 
-int sonoUguali(long nb, char **arg, int i)
+int	sono_uguali(long nb, char **arg, int i)
 {
-    i++;
-    while (arg[i])
-    {
-        if (atoi(arg[i]) == nb)
-            return 1;
-        i++;
-    }
-    return 0;
+	i++;
+	while (arg[i])
+	{
+		if (atoi(arg[i]) == nb)
+			return 1;
+		i++;
+	}
+    return (0);
 }
 
 int is_digit(int c)
 {
-    return (c >= '0' && c <= '9');
+	return (c >= '0' && c <= '9');
 }
-bool isNumero(char *num)
+bool	is_numero(char *num)
 {
-    int i;
-    i = 0;
+	int	i;
 
-    printf("analizzo il numero: %s\n", num);
-    if (num[i] == '-')
-    {
-        i++;
-      //  printf("trovato numero negativo");
-    }
-    while (num[i])
-    {
-        printf("analizzo il seguente digit %c\n", num[i]);
-        if (!is_digit(num[i])) // in libft
-        {
-            printf("Non è un digit\n");
-            return false;
-        }
-        else
-        {
-            printf(" e un digit\n");
-        }
-        i++;
-    }
-    return true;
+	i = 0;
+	if (num[i] == '-')
+		i++;
+	while (num[i])
+	{
+		if (!is_digit(num[i]))
+			return (false);
+		i++;
+	}
+	return (true);
 }
 
-void verificaArg(int ac, char **av)
+void	verifica_arg(int ac, char **av)
 {
-    int i;
-    int tmp = INT_MIN;
-    char **arg;
+    int		i;
+    long	tmp;
+    char	**arg;
 
-    // printf("qui ci arrivo");
-    i = 0;
-    if (ac == 2)
-    {
-        arg = ft_split(av[1], ' ');
-    }
-    else
-    {
-        i = 1;
-        arg = av;
-    }
-    while (arg[i])
-    {
-
-        if (!isNumero(arg[i]))
-        {
-            ft_error("ERRORE");
-            return;
-        }
-        else
-            tmp = atoi(arg[i]);
-
-        if (sonoUguali(tmp, arg, i))
-            ft_error("ERRORE");
-        else if (tmp < INT_MIN || tmp > INT_MAX)
-            ft_error("NUMERI FUORI DAL LIMITE");
-        i++;
-    }
-    /* if (ac == 2)
-        ft_free(arg); */
+	i = 0;
+	if (ac == 2)
+		arg = ft_split(av[1], ' ');
+	else
+	{
+		i = 1;
+		arg = av;
+	}
+	while (arg[i])
+	{
+		if (!is_numero(arg[i]))
+			ft_error(arg, ac);
+		else
+			tmp = atol(arg[i]);
+		if (sono_uguali(tmp, arg, i))
+			ft_error(arg, ac);
+		else if (tmp < INT_MIN || tmp > INT_MAX)
+			ft_error(arg, ac);
+		i++;
+	}
+	if (ac == 2)
+		ft_free(arg);
 }
 
-/*bool isSorted(nodo *lista_a)
+int	calcolo_dist(t_nodo **lista, int i)
 {
-    int prev = lista_a->value;
-    while (lista_a->next)
-    {
-        printf("Contfronto %d con %d\n", prev, lista_a->next->value);
-        if (prev > lista_a->next->value)
-            return false;
-        lista_a = lista_a->next;
-        prev = lista_a->value;
-    }
-    return true;
-}*/
+	int		distanza;
+	t_nodo	*testa;
 
-int calcoloDist(nodo **lista, int i)
-{ // calcolo della distanza tra indice e testa
-    int distanza;
-    nodo *testa;
-
-    testa = *lista;
-    distanza = 0;
-    while (testa)
-    {
-        if (testa->index == i)
-            break;
-        distanza++;
-        testa = testa->next;
-    }
-    return distanza;
+	testa = *lista;
+	distanza = 0;
+	while (testa)
+	{
+		if (testa->index == i)
+			break;
+		distanza++;
+		testa = testa->next;
+	}
+	return (distanza);
 }

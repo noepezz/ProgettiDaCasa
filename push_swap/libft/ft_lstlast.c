@@ -41,7 +41,7 @@ int main() {
 
     t_list *last = ft_lstlast(head);
 
-    printf("\nUltimo nodo: %s\n", (char *)last->content);
+    printf("\nUltimo t_nodo: %s\n", (char *)last->content);
     
     free(node3);
     free(node2);

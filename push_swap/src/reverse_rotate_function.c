@@ -1,17 +1,17 @@
 #include "../includes/push_swap.h"
 
-bool reverseRotate(nodo **lista)
+bool reverse_rotate(t_nodo **lista)
 {
-    nodo *testa;
-    nodo *coda;
+    t_nodo *testa;
+    t_nodo *coda;
 
-    if (dimensioneLista(*lista) < 2)
-        return false;
+    if (dimensione_lista(*lista) < 2)
+        return (false);
     testa = *lista;
-    coda = ultimoNodo(testa);
+    coda = ultimo_t_nodo(testa);
     while(testa)
     {
-        if (testa->next->next == NULL)
+        if (testa->next && testa->next->next == NULL)
         {
             testa->next = NULL;
             break  ;
@@ -23,27 +23,27 @@ bool reverseRotate(nodo **lista)
     return (true);
 }
 
-bool rra(nodo **listaA)
+bool rra(t_nodo **listaA)
 {
-    if(reverseRotate(listaA) == false)
-        return false;
+    if(reverse_rotate(listaA) == false)
+        return (false);
     printf("rra");
-    return true;
+    return (true);
 }
-bool rrb(nodo **listaB)
+bool rrb(t_nodo **listaB)
 {
-    if(reverseRotate(listaB) == false)
-        return false;
+    if(reverse_rotate(listaB) == false)
+        return (false);
     printf("rrb");
-    return true;
+    return (true);
 }
 
-bool rrr(nodo **listaA, nodo **listaB)
+bool rrr(t_nodo **listaA, t_nodo **listaB)
 {
-    if ((dimensioneLista(*listaA) < 2) || (dimensioneLista(*listaB) < 2))
-        return false; 
+    if ((dimensione_lista(*listaA) < 2) || (dimensione_lista(*listaB) < 2))
+        return (false); 
     rra(listaA);
     rrb(listaB);
     printf("rrr");
-    return true;
+    return (true);
 }
